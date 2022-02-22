@@ -58,17 +58,16 @@ We have identified the variables below as most important to our discussion:
 &Dagger; These are the variables used in our first conceptual model, and which we think are the most relevant ones to start our analysis with.
 
 ## The code 
-Should follow a similar set-up as the code in R now does. Note that, for now, **our variables of interest are those marked with a &Dagger; above.** This means that questions of imputation, modelling, and cleaning, apply chiefly to these variables. As time goes on the list of relevant variables will likely change, also through input from the literature review team.
+Note that, for now, **our variables of interest are those marked with a &Dagger; above.** This means that questions of imputation, modelling, and cleaning, apply chiefly to these variables. As time goes on the list of relevant variables will likely change.
 
-0. **SaveAndMergePanel.py**: This file loads the yearly panel, merges it into a single table, and stores it as a useful format.
-   * What would be the best format to use here, for importing in step 1.?
+0. **SaveAndMergePanel.py**: This file loads the yearly panel, merges it into a single table.
 1. **TranslationAndCleaning.py**: Should translate the Spanish column names into English, adds some necessary columns, and fixes some typo's. This is where cleaning and defining of new variables takes place.
-2. **Imputation.py**: Currently empty, but this is where we will impute the required variables.
+2. **Imputation.py**: Impute the required variables.
    * A very important step, and we are unsure how to proceed here. What is the most statistically rigorous way to impute these values? Also requires some input from 3.
 
 ### Some Comments
-* Work has to be done to understand what data is missing, and why.
-* Some work also has to be done to understand what levels of clustering are most relevant, and for which variables (e.g., is someone most influenced by the average level of education in their household, neighborhood, or city?) Also a question that can be answered
+* Work has to be done to understand what data is missing, and (possibly) why.
+* Some work also has to be done to understand what levels of clustering are most relevant, and for which variables (e.g., is someone most influenced by the average level of education in their household, neighborhood, or city?) 
 * Comments are used in two ways: as titles of a particular section above the code, and to note some interesting results below the code.
 
 ## Possible next steps
