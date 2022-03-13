@@ -35,6 +35,7 @@ _level_of_education = ['ninguno', 'centro de alfabetización', 'primaria', 'secu
 _level_of_education_num = [0, 1, 2, 3, 2, 3, 4, 5, 6]
 _level_of_education_num_dict = dict(zip(_level_of_education, _level_of_education_num))
 data['level_of_education_num'] = [int(_level_of_education_num_dict[x]) if x in _level_of_education else np.nan for x in data['level_of_education']]
+data['post_secondary'] = [1 if x>=4 else 0 for x in data['level_of_education_num']]
 
 # Add job feeling as numerical variable
 _job_feeling = ['contento', 'poco contento', 'descontento pero conforme', 'totalmente decontento',
@@ -57,20 +58,21 @@ _repl_age = {'98 y más': 98,  '98 y mÃ¡s': 98, 'no informa': np.nan}
 data['age'] = [_repl_age[x] if x in _repl_age.keys() else x for x in data['age']]
 
 # Add standardized column for age
-data['age_st'] = [x for x in (data['age']-data['age'].mean())/2*data['age'].std()]
-print(data['age'].mean())  # 31 years
-print(data['age'].std())  # 22 years
+data['age_st'] = [x for x in (data['age']-data['age'].mean())/(data['age'].std())]
 
 # Add standardized column for internet usage
 data['daily_hours_internet_use_st'] = [x for x in (data['daily_hours_internet_use']-data['daily_hours_internet_use'].mean())/2*data['daily_hours_internet_use'].std()]
-print(data['daily_hours_internet_use'].mean())  # 2 hours
-print(data['daily_hours_internet_use'].std())  # 2 hours
+
 
 # Add column female, with 1 for mujer and 0 otherwise
 data['female'] = [1 if x == 'mujer' else 0 for x in data['sex']]
 
+# Add column area_num, with 1 for urban and 0 otherwise
+data['area_num'] = [1 if x == 'urbana' else 0 if x=='rural' else np.nan for x in data['area']]
+
 # Add column poverty_num, with 1 for in poverty and 0 otherwise
 data['poverty_num'] = [1 if x == 'pobre' else 0 if x == 'no pobre' else np.nan for x in data['poverty']]
+data['extr_poverty_num'] = [1 if x == 'indigente' else 0 if x == 'no indigente' else np.nan for x in data['extr_poverty']]
 
 # Change column has_received_human_dev_bond to binary with 1 for yes and 0 for no
 data['has_received_human_dev_bond'] = [1 if x == 'si' else 0 if x == 'no' else np.nan for x in data['has_received_human_dev_bond']]
